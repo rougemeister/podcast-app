@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ConfessionsService, Confession } from './services/confessions.service';
+import { ConfessionsService, Confession } from './core/services/confessions.service';
 
 @Component({
   selector: 'app-root',
