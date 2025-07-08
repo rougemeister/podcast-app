@@ -324,6 +324,24 @@
   </div>
 </main>
 
+<section style="max-width: 700px; margin: 2rem auto;">
+  <h2>Confessions</h2>
+  <ng-container *ngIf="confessions.length; else noConfessions">
+    <ul style="list-style: none; padding: 0;">
+      <li *ngFor="let confession of confessions" style="margin-bottom: 1.5rem; padding: 1rem; border: 1px solid #eee; border-radius: 8px; background: #fafaff;">
+        <p><strong>Message:</strong> {{ confession.message }}</p>
+        <p *ngIf="confession.category"><strong>Category:</strong> {{ confession.category }}</p>
+        <p *ngIf="confession.emotion"><strong>Emotion:</strong> {{ confession.emotion }}</p>
+        <p><strong>Status:</strong> {{ confession.is_approved ? 'Approved' : 'Pending' }}</p>
+        <p style="font-size: 0.85em; color: #888;">Submitted: {{ confession.created_at | date:'medium' }}</p>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noConfessions>
+    <p>No confessions found.</p>
+  </ng-template>
+</section>
+
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
