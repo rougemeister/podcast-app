@@ -4,11 +4,13 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as AuthActions  from '../../store/auth/auth.actions';
 import { LoginCredentials } from '../../core/model/model';
+import { ButtonModule } from 'primeng/button';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ButtonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
