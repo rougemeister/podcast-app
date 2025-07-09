@@ -15,18 +15,25 @@ export class AuthService {
   constructor(private http: HttpClient) {}
   
    register(data: RegisterCredentials): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, data);
+    return this.http.post(`${this.baseUrl}/register`, data).pipe(
+      tap((res: any) => {
+        if (res.status === 'success') {
+          this.storeAuthData(res.data.token, res.data.user);
+          console.log('Bearer Token:', res.data.token);
+        }
+      })
+    );
   }
+  
   login(credentials: LoginCredentials): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${environment.apiUrl}/login`, credentials).pipe(
       tap((res) => {
         if (res.status === 'success') {
-          localStorage.setItem('token', res.data.token);
-          localStorage.setItem('user', JSON.stringify(res.data.user));
+          this.storeAuthData(res.data.token, res.data.user);
           console.log('Bearer Token:', res.data.token);
         }
       })
-    );;
+    );
   }
 
   getToken(): string | null {
@@ -35,12 +42,23 @@ export class AuthService {
 
   getUserFromStorage(): User | null {
     const userData = localStorage.getItem(this.USER_KEY);
-    return userData ? JSON.parse(userData) : null;
+    if (!userData || userData === 'undefined' || userData === 'null') {
+      return null;
+    }
+    try {
+      return JSON.parse(userData);
+    } catch {
+      return null;
+    }
   }
 
   storeAuthData(token: string, user: User): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    if (token) {
+      localStorage.setItem(this.TOKEN_KEY, token);
+    }
+    if (user) {
+      localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    }
   }
 
   clearAuthData(): void {

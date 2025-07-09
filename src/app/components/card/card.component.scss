@@ -1,0 +1,108 @@
+// .stats-card {
+//   background: #fff;
+//   border-radius: 0.75rem;
+//   box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.025), 0 0.5px 1px 0 rgba(0,0,0,0.015);
+//   border: 1px solid #e5e7eb;
+//   padding: 1.5rem;
+//   transition: box-shadow 0.2s;
+// }
+
+// .stats-card:hover {
+//   box-shadow: 0 1.5px 4px 0 rgba(0,0,0,0.045), 0 1px 2px 0 rgba(0,0,0,0.025);
+// }
+
+// .stats-card__header {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+
+// .stats-card__title {
+//   font-size: 0.95rem;
+//   font-weight: 500;
+//   color: #4b5563;
+// }
+
+// .stats-card__value {
+//   font-size: 2rem;
+//   font-weight: 700;
+//   color: #111827;
+//   margin-top: 0.25rem;
+// }
+
+// .stats-card__trend {
+//   font-size: 1rem;
+//   margin-top: 0.25rem;
+// }
+
+// .stats-card__trend--positive {
+//   color: #16a34a;
+// }
+
+// .stats-card__trend--negative {
+//   color: #dc2626;
+// }
+
+// .stats-card__icon-wrapper {
+//   padding: 0.75rem;
+//   border-radius: 0.75rem;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 1.5rem;
+// }
+
+// .stats-card__icon-wrapper.blue {
+//   background: #eff6ff;
+//   color: #1d4ed8;
+// }
+// .stats-card__icon-wrapper.green {
+//   background: #ecfdf5;
+//   color: #059669;
+// }
+// .stats-card__icon-wrapper.purple {
+//   background: #f5f3ff;
+//   color: #7c3aed;
+// }
+// .stats-card__icon-wrapper.orange {
+//   background: #fff7ed;
+//   color: #ea580c;
+// }
+// .stats-card__icon-wrapper.red {
+//   background: #fef2f2;
+//   color: #dc2626;
+// }
+
+
+.dashboard-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: var(--color-background);
+	border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.025), 0 0.5px 1px 0 rgba(0,0,0,0.015);
+  transition: background-color 0.3s ease;
+
+  .icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-right: 1rem;
+  }
+
+  .content {
+    .title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    .value {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 10px;
+      color: var(--color-text);
+    }
+  }
+}

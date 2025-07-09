@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface Confession {
   id: number;
@@ -16,14 +17,21 @@ export interface Confession {
   providedIn: 'root'
 })
 export class ConfessionsService {
+  private confessionsSubject = new BehaviorSubject<Confession[]>([]);
+  confessions$ = this.confessionsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  // get all confessions
-  getAllConfessions(): Observable<Confession[]> {
-    return this.http.get<Confession[]>(
-      'https://api.rantsnconfess.com/v1/confessions'
-    );
+  fetchAllConfessions(): void {
+    this.http.get<any>(`${environment.apiUrl}/confessions`)
+      .subscribe({
+        next: (response) => {
+          this.confessionsSubject.next(response.data);
+        },
+        error: (err) => {
+          console.error('Failed to fetch confessions', err);
+        }
+      });
   }
 
   //create confession
@@ -31,5 +39,9 @@ export class ConfessionsService {
   //   return;
   // }
 
+  // Returns the current number of confessions
+  getConfessionsLength(): number {
+    return this.confessionsSubject.getValue().length;
+  }
 
 }

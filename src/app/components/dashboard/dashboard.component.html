@@ -1,0 +1,9 @@
+ <div class="stats-grid">
+<app-stats-card title="Confessions" [value]="(total$ | async) ?? 0"/>
+<app-stats-card title="Episodes" [value]="(episodesTotal$ | async) ?? 0"/>
+<app-stats-card title="Playlist" [value]="(total$ | async) ?? 0"/>
+</div>
+<div class="stats-table">
+<app-episodes/>
+<app-confessions/>
+</div>

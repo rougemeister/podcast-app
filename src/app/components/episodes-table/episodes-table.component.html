@@ -1,0 +1,28 @@
+<div class="episodes-table-container">
+  <table class="episodes-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Duration</th>
+        <th>Posted On</th>
+        <th>Audio</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let episode of episodes$ | async" style=" border-bottom: 1px solid #e5e7eb;">
+        <td>{{ episode.title }}</td>
+        <td>{{ episode.description }}</td>
+        <td>{{ episode.duration }}</td>
+        <td>{{ episode.posted_on | date:'mediumDate' }}</td>
+        <td>
+          <a *ngIf="episode.audio_url" [href]="episode.audio_url" target="_blank">Listen</a>
+        </td>
+        <td>
+          <img *ngIf="episode.img_url" [src]="episode.img_url" alt="Episode image" width="50" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

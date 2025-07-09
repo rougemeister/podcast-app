@@ -38,6 +38,7 @@ export class AuthEffects {
       ofType(AuthActions.loginSuccess),
       tap(({ user, token }) => {
         this.authService.storeAuthData(token, user);
+        this.router.navigate(['/dashboard']);
       })
     ),
     { dispatch: false }
@@ -60,10 +61,13 @@ export class AuthEffects {
       map(() => {
         const token = this.authService.getToken();
         const user = this.authService.getUserFromStorage();
-        
+        console.log('[AuthEffects] checkAuthStatus$ token:', token);
+        console.log('[AuthEffects] checkAuthStatus$ user:', user);
         if (token && user) {
+          console.log('[AuthEffects] Dispatching setAuthenticatedUser');
           return AuthActions.setAuthenticatedUser({ user, token });
         } else {
+          console.log('[AuthEffects] Dispatching clearAuthState');
           return AuthActions.clearAuthState();
         }
       })
@@ -87,5 +91,16 @@ export class AuthEffects {
         )
       )
     )
+  );
+
+  registerSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.registerSuccess),
+      tap(({ user, token }) => {
+        this.authService.storeAuthData(token, user);
+        this.router.navigate(['/dashboard']);
+      })
+    ),
+    { dispatch: false }
   );
 }

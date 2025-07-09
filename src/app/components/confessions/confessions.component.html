@@ -1,0 +1,9 @@
+<div class="episodes-table-container">
+  <h1>Confessions</h1>
+  <div style="margin: 16px;">
+    <div *ngIf="confessions.length === 0">No confessions found.</div>
+    <div *ngFor="let confession of confessions">
+      <app-confessions-card></app-confessions-card>
+    </div>
+  </div>
+</div>
