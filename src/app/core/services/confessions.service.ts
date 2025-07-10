@@ -22,26 +22,15 @@ export class ConfessionsService {
 
   constructor(private http: HttpClient) { }
 
-  fetchAllConfessions(): void {
-    this.http.get<any>(`${environment.apiUrl}/confessions`)
-      .subscribe({
-        next: (response) => {
-          this.confessionsSubject.next(response.data);
-        },
-        error: (err) => {
-          console.error('Failed to fetch confessions', err);
-        }
-      });
+  fetchAllConfessions(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/confessions`);
   }
 
-  //create confession
-  // createConfession():Observable<Confession>{
-  //   return;
-  // }
+  setConfessions(confessions: Confession[]): void {
+    this.confessionsSubject.next(confessions);
+  }
 
-  // Returns the current number of confessions
   getConfessionsLength(): number {
     return this.confessionsSubject.getValue().length;
   }
-
 }

@@ -1,26 +1,24 @@
 <div class="confession-list">
-  @for (confession of $confession$ | async; track confession.id) {
-    <div class="confession-item">
-      <div class="left">
-        <div class="emoji">💬</div>
-        <div class="message">
-          <p class="text">{{ confession.message }}</p>
-          <p class="meta">
-            <span class="category">{{ confession.category }}</span> |
-            <span class="emotion">{{ confession.emotion }}</span> |
-            <span class="date">{{ confession.created_at | date: 'MMM d, y' }}</span>
-          </p>
-        </div>
-      </div>
-      <div class="right">
-        <span
-          class="status"
-          [class.approved]="confession.is_approved"
-          [class.unapproved]="!confession.is_approved"
-        >
-          {{ confession.is_approved ? 'Approved' : 'Pending' }}
-        </span>
+  <div class="confession-item">
+    <div class="left">
+      <div class="emoji"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-more-icon lucide-message-circle-more"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg></div>
+      <div class="message">
+        <p class="text">{{ confession.message }}</p>
+        <p class="meta">
+          <span class="category">{{ confession.category }}</span> 
+          <span class="emotion">{{ confession.emotion }}</span> 
+          <span class="date">{{ confession.created_at | date: 'MMM d, y' }}</span>
+        </p>
       </div>
     </div>
-  }
+    <div class="right">
+      <span
+        class="status"
+        [class.approved]="confession.is_approved"
+        [class.unapproved]="!confession.is_approved"
+      >
+        {{ confession.is_approved ? 'Approved' : 'Pending' }}
+      </span>
+    </div>
+  </div>
 </div>

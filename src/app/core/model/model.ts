@@ -55,3 +55,22 @@ export interface EpisodeResponse {
   };
 }
 
+export interface Team {
+  id: number;
+  name: string;
+  description?: string;
+  member_count?: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface TeamResponse {
+  status: string;
+  data: Team[];
+  meta?: {
+    total: number;
+    page: number;
+    last_page: number;
+  };
+}
+

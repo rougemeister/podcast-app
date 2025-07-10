@@ -1,9 +1,37 @@
 <div class="episodes-table-container">
   <h1>Confessions</h1>
   <div style="margin: 16px;">
-    <div *ngIf="confessions.length === 0">No confessions found.</div>
-    <div *ngFor="let confession of confessions">
-      <app-confessions-card></app-confessions-card>
+    <!-- Loading Skeleton -->
+    <div *ngIf="loading" class="skeleton-container">
+      <div *ngFor="let item of [1,2,3,4,5,6,7]" class="confession-skeleton-card">
+        <div class="confession-skeleton-item">
+          <div class="left">
+            <div class="skeleton-emoji"></div>
+            <div class="skeleton-message">
+              <div class="skeleton-text skeleton-message-text"></div>
+              <div class="skeleton-text skeleton-meta"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="skeleton-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="error-container">
+      <div class="error-message">
+        <p>{{ error }}</p>
+        <button (click)="retryLoad()" class="retry-button">Try Again</button>
+      </div>
+    </div>
+    <!-- Empty State -->
+    <div *ngIf="!loading && !error && confessions.length === 0">No confessions found.</div>
+    <!-- Confessions List -->
+    <div *ngIf="!loading && !error && confessions.length > 0">
+      <div *ngFor="let confession of confessions">
+        <app-confessions-card [confession]="confession"></app-confessions-card>
+      </div>
     </div>
   </div>
 </div>

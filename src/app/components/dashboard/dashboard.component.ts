@@ -6,7 +6,6 @@ import { ConfessionsService, Confession } from '../../core/services/confessions.
 import { Observable, map } from 'rxjs';
 import { RouterOutlet } from '@angular/router';
 import { StatsCardComponent } from '../card/card.component';
-import { EpisodesTableComponent } from '../episodes-table/episodes-table.component';
 import { EpisodeService } from '../../core/services/episodes.service';
 import { EpisodesComponent } from '../episodes/episodes.component';
 import { ConfessionsComponent } from '../confessions/confessions.component';
@@ -31,7 +30,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.confessionsService.fetchAllConfessions();
     this.episodeService.getEpisodes().subscribe();
   }
 } 

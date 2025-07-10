@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { ConfessionsService, Confession } from '../../core/services/confessions.service';
+import { Component, Input } from '@angular/core';
+import { Confession } from '../../core/services/confessions.service';
 import { CommonModule, DatePipe } from '@angular/common';
-import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-confessions-card',
@@ -11,13 +10,7 @@ import { Observable, map } from 'rxjs';
   styleUrl: './confessions-card.component.scss'
 })
 export class ConfessionsCardComponent {
-  $confession$: Observable<Confession[]>;
-
-  constructor(private confessionsService: ConfessionsService) {
-    this.$confession$ = this.confessionsService.confessions$.pipe(
-      map(confessions => confessions.slice(0, 10))
-    );
-  }
+  @Input() confession!: Confession;
 
   trackById(index: number, confession: Confession) {
     return confession.id;

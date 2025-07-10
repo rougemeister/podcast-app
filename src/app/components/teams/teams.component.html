@@ -1,1 +1,26 @@
-<p>teams works!</p>
+<div class="teams-container">
+  <h1>Teams</h1>
+  
+  @if (loading) {
+    <app-teams-skeleton [count]="6"></app-teams-skeleton>
+  } @else if (error) {
+    <div class="error">
+      <p>{{ error }}</p>
+      <button (click)="loadTeams()" class="retry-btn">Retry</button>
+    </div>
+  } @else if (teams.length === 0) {
+    <div class="empty-state">
+      <p>No teams found.</p>
+    </div>
+  } @else {
+    <div class="teams-grid">
+      @for (team of teams; track team.id) {
+        <app-stats-card
+          [title]="team.name"
+          [value]="team.member_count || 0"
+          icon="group">
+        </app-stats-card>
+      }
+    </div>
+  }
+</div>

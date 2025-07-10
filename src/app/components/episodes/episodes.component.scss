@@ -104,3 +104,82 @@ img{
   font-size: 12px;
   font-weight: 500;
 }
+
+.skeleton-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.skeleton-row {
+  pointer-events: none;
+}
+
+.skeleton-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite linear;
+}
+
+.skeleton-text {
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite linear;
+}
+
+.skeleton-title {
+  width: 120px;
+  height: 18px;
+}
+
+.skeleton-duration {
+  width: 60px;
+}
+
+.skeleton-date {
+  width: 90px;
+}
+
+.skeleton-button {
+  width: 60px;
+  height: 18px;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.audio-play-btn {
+  border: none;
+  background: #e5e7eb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.03);
+  outline: none;
+  padding: 0;
+}
+
+.audio-play-btn:hover, .audio-play-btn:focus {
+  background: #d1d5db;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.06);
+}
+
+.audio-play-btn svg {
+  display: block;
+}
