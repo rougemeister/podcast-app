@@ -40,7 +40,7 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  getUserFromStorage(): User | null {
+  getUserFromStorage(): User | null { 
     const userData = localStorage.getItem(this.USER_KEY);
     if (!userData || userData === 'undefined' || userData === 'null') {
       return null;
