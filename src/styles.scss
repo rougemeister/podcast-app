@@ -123,6 +123,38 @@
   color: #6b7280;
 }
 
+:root {
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #1e293b;
+  --color-primary: #2563eb;
+  --color-secondary: #64748b;
+  --color-accent: #f59e42;
+  --color-border: #e5e7eb;
+  --color-card: #ffffff;
+  --color-card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --color-status-approved-bg: #e6f5ec;
+  --color-status-approved-text: #3c9462;
+  --color-status-unapproved-bg: #fdecea;
+  --color-status-unapproved-text: #d93025;
+}
+
+.dark-theme {
+  --color-background: #18181b;
+  --color-surface: #23232a;
+  --color-text: #f3f4f6;
+  --color-primary: #60a5fa;
+  --color-secondary: #a1a1aa;
+  --color-accent: #fbbf24;
+  --color-border: #27272a;
+  --color-card: #23232a;
+  --color-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.4);
+  --color-status-approved-bg: #234d36;
+  --color-status-approved-text: #6ee7b7;
+  --color-status-unapproved-bg: #3f1d1d;
+  --color-status-unapproved-text: #fca5a5;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .container {

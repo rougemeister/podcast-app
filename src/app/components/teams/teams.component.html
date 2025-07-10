@@ -1,6 +1,67 @@
 <div class="teams-container">
   <h1>Teams</h1>
   
+  <!-- Admin: Add Team Button -->
+  @if (isAdmin) {
+    <button class="add-btn" (click)="openCreateModal()">Add Team</button>
+  }
+
+  <!-- Create Modal -->
+  @if (showCreateModal) {
+    <div class="modal-backdrop">
+      <div class="modal">
+        <h2>Add Team</h2>
+        <form (ngSubmit)="createTeam()">
+          <input type="text" placeholder="Name" [(ngModel)]="teamForm.name" name="name" required />
+          <input type="text" placeholder="Role" [(ngModel)]="teamForm.role" name="role" required />
+          <input type="text" placeholder="Profile Image URL" [(ngModel)]="teamForm.profile_image" name="profile_image" />
+          <textarea placeholder="Bio" [(ngModel)]="teamForm.bio" name="bio"></textarea>
+          <div class="social-links-form">
+            <label>Social Media Links</label>
+            <div *ngFor="let link of teamForm.social_media_links; let i = index">
+              <input type="text" placeholder="Platform" [(ngModel)]="teamForm.social_media_links![i].platform" name="platform{{i}}" />
+              <input type="text" placeholder="URL" [(ngModel)]="teamForm.social_media_links![i].url" name="url{{i}}" />
+              <button type="button" (click)="removeSocialLink(i)">Remove</button>
+            </div>
+            <button type="button" (click)="addSocialLink()">Add Link</button>
+          </div>
+          <div class="modal-actions">
+            <button type="submit">Create</button>
+            <button type="button" (click)="closeModals()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- Edit Modal -->
+  @if (showEditModal) {
+    <div class="modal-backdrop">
+      <div class="modal">
+        <h2>Edit Team</h2>
+        <form (ngSubmit)="updateTeam()">
+          <input type="text" placeholder="Name" [(ngModel)]="teamForm.name" name="editName" required />
+          <input type="text" placeholder="Role" [(ngModel)]="teamForm.role" name="editRole" required />
+          <input type="text" placeholder="Profile Image URL" [(ngModel)]="teamForm.profile_image" name="editProfileImage" />
+          <textarea placeholder="Bio" [(ngModel)]="teamForm.bio" name="editBio"></textarea>
+          <div class="social-links-form">
+            <label>Social Media Links</label>
+            <div *ngFor="let link of teamForm.social_media_links; let i = index">
+              <input type="text" placeholder="Platform" [(ngModel)]="teamForm.social_media_links![i].platform" name="editPlatform{{i}}" />
+              <input type="text" placeholder="URL" [(ngModel)]="teamForm.social_media_links![i].url" name="editUrl{{i}}" />
+              <button type="button" (click)="removeSocialLink(i)">Remove</button>
+            </div>
+            <button type="button" (click)="addSocialLink()">Add Link</button>
+          </div>
+          <div class="modal-actions">
+            <button type="submit">Update</button>
+            <button type="button" (click)="closeModals()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+  
   @if (loading) {
     <app-teams-skeleton [count]="6"></app-teams-skeleton>
   } @else if (error) {
@@ -14,12 +75,36 @@
     </div>
   } @else {
     <div class="teams-grid">
-      @for (team of teams; track team.id) {
-        <app-stats-card
-          [title]="team.name"
-          [value]="team.member_count || 0"
-          icon="group">
-        </app-stats-card>
+      @for (team of teams; track team.name) {
+        <div class="team-card">
+          <div class="team-card-body">
+            <img class="profile-img" [src]="getProfileImage(team)" [alt]="team.name">
+            <div class="team-info">
+              <h3>{{ team.name }}</h3>
+              <p class="role">{{ team.role }}</p>
+              <!-- <p class="bio" *ngFor="let para of (team.bio ? team.bio.split('\n').slice(0,2) : [])">{{ para }}</p> -->
+              <!-- <div class="social-links" *ngIf="team.social_media_links?.length">
+                <a *ngFor="let link of team.social_media_links" [href]="link.url" target="_blank" rel="noopener noreferrer">
+                  {{ link.platform }}
+                </a>
+              </div> -->
+            </div>
+          </div>
+          @if (isAdmin) {
+            <div class="admin-actions">
+              <button class="icon-btn" (click)="openEditModal(team)" title="Edit team" aria-label="Edit team">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 13.5V16h2.5l7.06-7.06-2.5-2.5L4 13.5zM17.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.13 1.13 3.75 3.75 1.13-1.13z" fill="#3b82f6"/>
+                </svg>
+              </button>
+              <button class="icon-btn" (click)="deleteTeam(team)" title="Delete team" aria-label="Delete team">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 7v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V7M9 10v4m2-4v4M4 7h12M8 7V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          }
+        </div>
       }
     </div>
   }

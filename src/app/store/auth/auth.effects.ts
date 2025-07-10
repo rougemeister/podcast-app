@@ -22,8 +22,8 @@ export class AuthEffects {
       exhaustMap(({ credentials }) =>
         this.authService.login(credentials).pipe(
           map((response) => AuthActions.loginSuccess({
-            user: response.user,
-            token: response.token
+            user: response.data.user,
+            token: response.data.token
           })),
           catchError((error) => of(AuthActions.loginFailure({
             error: error.error?.message || 'Login failed'
@@ -49,7 +49,7 @@ export class AuthEffects {
       ofType(AuthActions.logout),
       tap(() => {
         this.authService.clearAuthData();
-        this.router.navigate(['/admin/login']);
+        this.router.navigate(['/logout']);
       })
     ),
     { dispatch: false }
@@ -80,8 +80,8 @@ export class AuthEffects {
       exhaustMap(({ credentials }) =>
         this.authService.register(credentials).pipe(
           map((response) => AuthActions.registerSuccess({
-            user: response.user,
-            token: response.token
+            user: response.data.user,
+            token: response.data.token
           })),
           catchError((error) =>
             of(AuthActions.registerFailure({

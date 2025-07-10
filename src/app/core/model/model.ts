@@ -24,6 +24,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  role?: string;
 }
 
 export interface Episode {
@@ -55,13 +56,17 @@ export interface EpisodeResponse {
   };
 }
 
+export interface SocialMediaLink {
+  platform: string;
+  url: string;
+}
+
 export interface Team {
-  id: number;
   name: string;
-  description?: string;
-  member_count?: number;
-  created_at?: string;
-  updated_at?: string;
+  role: string;
+  bio: string;
+  profile_image: string;
+  social_media_links: SocialMediaLink[];
 }
 
 export interface TeamResponse {

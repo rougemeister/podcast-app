@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Confession } from '../../core/services/confessions.service';
 import { CommonModule, DatePipe } from '@angular/common';
 
@@ -11,8 +11,19 @@ import { CommonModule, DatePipe } from '@angular/common';
 })
 export class ConfessionsCardComponent {
   @Input() confession!: Confession;
+  @Input() isAdmin: boolean = false;
+  @Output() approvalToggled = new EventEmitter<void>();
+  @Output() deleteClicked = new EventEmitter<void>();
 
   trackById(index: number, confession: Confession) {
     return confession.id;
+  }
+
+  onToggleApproval() {
+    this.approvalToggled.emit();
+  }
+
+  onDeleteClicked() {
+    this.deleteClicked.emit();
   }
 }

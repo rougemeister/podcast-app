@@ -1,7 +1,7 @@
 .sidebar {
   width: 280px;
-  background-color: #ffffff;
-  border-right: 1px solid #e2e8f0;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -12,7 +12,7 @@
 .sidebar-header {
   padding:0 1.5rem;
   height: 50px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -21,12 +21,12 @@
 .logo {
   width: 32px;
   height: 32px;
-  background-color: #1e293b;
+  background-color: var(--color-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #fff;
   font-size: 0.875rem;
   font-weight: 600;
 }
@@ -34,7 +34,7 @@
 .company-name {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--color-text);
 }
 
 .sidebar-nav {
@@ -50,7 +50,7 @@
 .nav-section-title {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-secondary);
   padding: 0 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -60,21 +60,21 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
-  color: #475569;
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .nav-item:hover {
-  background-color: #f1f5f9;
-  color: #1e293b;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 .nav-item.active {
-  background-color: #eff6ff;
-  color: #2563eb;
-  border-right: 3px solid #2563eb;
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border-right: 3px solid var(--color-primary);
 }
 
 .nav-icon {
@@ -94,7 +94,7 @@
 
 .logout-btn {
   width: 90%;
-  background: #2563eb;
+  background: var(--color-primary);
   color: #fff;
   border: none;
   border-radius: 12px;

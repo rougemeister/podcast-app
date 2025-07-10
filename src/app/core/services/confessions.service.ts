@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { map } from 'rxjs/operators';
 
 export interface Confession {
   id: number;
@@ -32,5 +33,16 @@ export class ConfessionsService {
 
   getConfessionsLength(): number {
     return this.confessionsSubject.getValue().length;
+  }
+
+  updateConfessionApproval(id: number, is_approved: boolean): Observable<Confession> {
+    return this.http.patch<{ status: string; message: string; data: Confession }>(`${environment.apiUrl}/confessions/${id}`, { is_approved })
+      .pipe(
+        map(response => response.data)
+      );
+  }
+
+  deleteConfession(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/confessions/${id}`);
   }
 }

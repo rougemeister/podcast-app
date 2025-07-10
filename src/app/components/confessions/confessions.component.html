@@ -30,7 +30,7 @@
     <!-- Confessions List -->
     <div *ngIf="!loading && !error && confessions.length > 0">
       <div *ngFor="let confession of confessions">
-        <app-confessions-card [confession]="confession"></app-confessions-card>
+        <app-confessions-card [confession]="confession" [isAdmin]="isAdmin" (approvalToggled)="handleApprovalToggled(confession)" (deleteClicked)="handleDeleteConfession(confession)"></app-confessions-card>
       </div>
     </div>
   </div>

@@ -14,4 +14,16 @@ export class TeamsService {
   getAllTeams(): Observable<TeamResponse> {
     return this.http.get<TeamResponse>(`${environment.apiUrl}/team-members`);
   }
+
+  createTeam(team: Partial<Team>): Observable<Team> {
+    return this.http.post<Team>(`${environment.apiUrl}/team-members`, team);
+  }
+
+  updateTeam(id: number, team: Partial<Team>): Observable<Team> {
+    return this.http.put<Team>(`${environment.apiUrl}/team-members/${id}`, team);
+  }
+
+  deleteTeam(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/team-members/${id}`);
+  }
 }
